@@ -8,5 +8,5 @@ export const <%= component_name %> = props => {
   console.log(style);
   return (
     <div className={style.container}></div>
-  )
-}
+  );
+};
