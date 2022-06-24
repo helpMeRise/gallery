@@ -1,16 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga';
+import { tokenMiddleware, tokenReducer } from './token/tokenReducer';
+import authReducer from './auth/authSlice';
 
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleWare = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-
+    tokenReducer,
+    authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(),
+    getDefaultMiddleware().concat(tokenMiddleware, sagaMiddleWare),
 });
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleWare.run(rootSaga);
