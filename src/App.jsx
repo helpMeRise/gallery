@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import { updateToken } from './store/token/tokenReducer';
 import { getToken } from './api/token';
+import { Main } from './components/Main/Main';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
       <Route path='*' element={
         <>
           <Header />
+          <Main />
         </>
       }>
 
