@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Logo.module.css';
-import {ReactComponent as LogoIcon} from './image/unsplash_icon.svg';
+import { ReactComponent as LogoIcon } from './image/unsplash_icon.svg';
 
 export const Logo = props => {
   console.log(style);

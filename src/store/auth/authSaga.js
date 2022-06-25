@@ -11,6 +11,7 @@ function* fetchAuth() {
     const request = yield call(axios, `${URL_API}/me`, {
       headers: {
         'Authorization': `Bearer ${token}`,
+        'Accept-Version': 'v1',
       },
     });
 

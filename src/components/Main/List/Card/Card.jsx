@@ -1,21 +1,22 @@
 import React from 'react';
-import style from './Card.module.css';
 import { PropTypes } from 'prop-types';
 
 
 export const Card = ({ data }) => {
-  console.log(style);
   const {
-    name,
-    date,
-    likes
+    urls,
+    // 'created_at': date,
+    // likes,
+    // user,
   } = data;
   return (
-    <li className={style.item}>
-      <p>{name}</p>
-      <p>{date}</p>
-      <p>{likes}</p>
-    </li>
+    <div style={{
+      backgroundImage: `url(${urls.thumb})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',
+    }}>
+      <img src={urls.thumb}/>
+    </div>
   );
 };
 
