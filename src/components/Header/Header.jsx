@@ -4,16 +4,13 @@ import Layout from '../Layout';
 import { Logo } from './Logo/Logo';
 import { Auth } from './Auth/Auth';
 
-export const Header = props => {
-  console.log(style);
-  return (
-    <header className={style.header}>
-      <Layout>
-        <div className={style.header__container}>
-          <Logo/>
-          <Auth/>
-        </div>
-      </Layout>
-    </header>
-  );
-};
+export const Header = props => (
+  <header className={style.header}>
+    <Layout>
+      <div className={style.header__container}>
+        <Logo/>
+        <Auth/>
+      </div>
+    </Layout>
+  </header>
+);

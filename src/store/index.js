@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga';
-import { tokenMiddleware, tokenReducer } from './token/tokenReducer';
+import tokenReducer from './token/tokenSlice';
 import authReducer from './auth/authSlice';
 import photosReducer from './photos/photosSlice';
 
@@ -15,7 +15,7 @@ export const store = configureStore({
     photosReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(tokenMiddleware, sagaMiddleWare),
+    getDefaultMiddleware().concat(sagaMiddleWare),
 });
 
 sagaMiddleWare.run(rootSaga);
