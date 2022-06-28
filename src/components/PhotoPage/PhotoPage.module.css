@@ -9,3 +9,7 @@
     height: 25px;
     fill: red;
 }
+
+.likes {
+    font-weight: bold;
+}

@@ -32,9 +32,9 @@ export const PhotoPage = () => {
     btn.classList.toggle(`${style.like_active}`);
 
     if (btn.classList.contains(`${style.like_active}`)) {
-      likes--;
-    } else {
       likes++;
+    } else {
+      likes--;
     }
     likesCount.textContent = likes;
   };
