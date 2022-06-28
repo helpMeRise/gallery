@@ -6,7 +6,7 @@ import { code } from '../../api/token';
 
 
 function* fetchToken() {
-  console.log(code);
+  if (!code) return;
   try {
     const request = yield call(axios, `https://unsplash.com/oauth/token?client_id=${ACCESS_KEY}&client_secret=${SECRET_KEY}&redirect_uri=${REDIRECT_URI}&code=${code}&grant_type=authorization_code`, {
       method: 'POST',

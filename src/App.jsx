@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import { Main } from './components/Main/Main';
 import { tokenSlice } from './store/token/tokenSlice';
+import { Main } from './components/Main/Main';
+import { PhotoPage } from './components/PhotoPage/PhotoPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,11 +15,15 @@ function App() {
     <Routes>
       <Route path='*' element={
         <>
-          <Header />
-          <Main />
+          <Header/>
+          <Routes>
+            <Route path='/' element={<Navigate to='/photos' replace/>}/>
+            <Route path='/auth' element={<Navigate to='/photos' replace/>}/>
+            <Route path='/photos' element={<Main/>}/>
+            <Route path='/photo/:id' element={<PhotoPage/>}/>
+          </Routes>
         </>
       }>
-
       </Route>
     </Routes>
   );

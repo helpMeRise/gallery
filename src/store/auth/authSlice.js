@@ -16,7 +16,6 @@ export const authSlice = createSlice({
       state.error = '';
     },
     authRequestSuccess: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
       state.data = action.payload;
       state.error = '';

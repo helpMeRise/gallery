@@ -7,11 +7,19 @@ import { useAuth } from '../../../hooks/useAuth';
 
 export const Auth = () => {
   const [auth] = useAuth();
-  console.log(auth);
   return (
-    <a href={urlAuth} className={style.button}>
-      <LoginIcon className={style.icon}/>
-    </a>
+    <>
+      {auth.username ? (
+        <div className={style.profile__info}>
+          <img src={auth['profile_image'].small}/>
+          <span>{auth.username}</span>
+        </div>
+      ) : (
+        <a href={urlAuth} className={style.button}>
+          <LoginIcon className={style.icon}/>
+        </a>
+      )}
+    </>
   );
 };
 

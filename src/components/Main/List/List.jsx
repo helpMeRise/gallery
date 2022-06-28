@@ -1,31 +1,54 @@
-import React, { useEffect } from 'react';
-// import { Card } from './Card/Card';
-import { usePhotos } from '../../../hooks/usePhotos';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import { Card } from './Card/Card';
+import { useDispatch, useSelector } from 'react-redux';
 import { photosSlice } from '../../../store/photos/photosSlice';
-// import { Masonry } from '@mui/lab';
-// import style from './List.module.css';
+import style from './List.module.css';
 import { ImageList } from '@mui/material';
-import ImageListItem from '@mui/material/ImageListItem';
+import { Outlet } from 'react-router-dom';
 
 export const List = props => {
-  const photos = usePhotos();
+  const photos = useSelector(state => state.photosReducer.data);
   const dispatch = useDispatch();
+  const endList = useRef(null);
+  const loading = useSelector(state => state.photosReducer.loading);
+
+
+  // useEffect(() => {
+  //   dispatch(photosSlice.actions.photosRequest());
+  // }, []);
+
   useEffect(() => {
-    dispatch(photosSlice.actions.photosRequest);
-  });
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        dispatch(photosSlice.actions.photosRequest());
+      }
+    }, {
+      rootMargin: '100px',
+    });
+
+    if (endList.current && !loading) {
+      observer.observe(endList.current);
+    }
+    return () => {
+      if (endList.current) {
+        observer.unobserve(endList.current);
+      }
+    };
+  }, [endList.current]);
 
   return (
     <ImageList variant='masonry' cols={5} gap={10}>
-      {photos[0].length > 0 ? (
-        photos[0].map((item) => (
-          <ImageListItem key={item.id}>
-            <img src={item.urls.thumb}/>
-          </ImageListItem>
+      {photos.length > 0 ? (
+        photos.map((item) => (
+          <li key={item.id}>
+            <Card data={item}/>
+          </li>
         ))
         ) : (
           <p>Загрузочка</p>
         )}
+      <li ref={endList} className={style.end}/>
+      <Outlet/>
     </ImageList>
   );
 };

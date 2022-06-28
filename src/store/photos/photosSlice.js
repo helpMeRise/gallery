@@ -4,8 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: false,
   data: [],
-  isLast: false,
   error: '',
+  page: 1,
 };
 
 export const photosSlice = createSlice({
@@ -18,13 +18,16 @@ export const photosSlice = createSlice({
     },
     photosRequestSuccess: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data = [...state.data, ...action.payload];
       state.error = '';
     },
     photosRequestError: (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
-    }
+    },
+    changePage: (state, action) => {
+      state.page++;
+    },
   }
 });
 

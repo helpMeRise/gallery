@@ -14,8 +14,8 @@ export const tokenSlice = createSlice({
       state.error = '';
     },
     tokenRequestSuccess: (state, action) => {
-      console.log(action.payload);
       state.token = action.payload;
+      state.error = '';
     },
     tokenRequestError: (state, action) => {
       state.token = '';

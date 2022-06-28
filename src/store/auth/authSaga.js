@@ -6,7 +6,6 @@ import { URL_API } from '../../api/const';
 
 function* fetchAuth() {
   const token = yield select(state => state.tokenReducer.token);
-  console.log(token);
   if (!token) return;
   try {
     const request = yield call(axios, `${URL_API}/me`, {
